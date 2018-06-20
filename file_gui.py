@@ -12,7 +12,7 @@ import threading
 from Tkinter import *
 from random import *
 
-from fxfiler import *
+from framework import *
 
 
 class FxGui(Frame):
