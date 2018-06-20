@@ -9,10 +9,10 @@ Module: Flux Network GUI
 import sys
 import threading
 
-from tkinter import *
+from Tkinter import *
 from random import *
 
-from framework import *
+from fxfiler import *
 
 
 class FxGui(Frame):
@@ -20,7 +20,7 @@ class FxGui(Frame):
         Frame.__init__(self, master)
         self.grid()
         self.createWidgets()
-        self.master.title("Flux Network %d" % serverport)
+        self.master.title("BerryTella Filer GUI %d" % serverport)
         self.fxpeer = FilerPeer(maxpeers, serverport)
 
         self.bind("<Destroy>", self.__onDestroy)
@@ -194,7 +194,7 @@ class FxGui(Frame):
 
 def main():
     if len(sys.argv) < 4:
-        print("Syntax: %s server-port max-peers peer-ip:port" % sys.argv[0])
+        print "Syntax: %s server-port max-peers peer-ip:port" % sys.argv[0]
         sys.exit(-1)
 
     serverport = int(sys.argv[1])

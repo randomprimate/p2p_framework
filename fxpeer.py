@@ -1,4 +1,4 @@
-# !/usr/bin/python
+#!/usr/bin/python
 
 # fxpeer.py
 
@@ -11,7 +11,7 @@ import traceback
 
 def fxdebug(msg):
     """ Prints a messsage to the screen with the name of the current thread """
-    print("[%s] %s" % (str(threading.currentThread().getName()), msg))
+    print "[%s] %s" % (str(threading.currentThread().getName()), msg)
 
 
 # ==============================================================================
@@ -119,8 +119,8 @@ class FxPeer:
     # --------------------------------------------------------------------------
     def startstabilizer(self, stabilizer, delay):
         # --------------------------------------------------------------------------
-        """ Registers and starts a stabilizer function with this peer. 
-        The function will be activated every <delay> seconds. 
+        """ Registers and starts a stabilizer function with this peer.
+        The function will be activated every <delay> seconds.
         """
         t = threading.Thread(target=self.__runstabilizer,
                              args=[stabilizer, delay])
@@ -152,7 +152,7 @@ class FxPeer:
     def addpeer(self, peerid, host, port):
         # --------------------------------------------------------------------------
         """ Adds a peer name and host:port mapping to the known list of peers.
-    
+
         """
         if peerid not in self.peers and (self.maxpeers == 0 or
                                          len(self.peers) < self.maxpeers):
@@ -178,10 +178,10 @@ class FxPeer:
     # --------------------------------------------------------------------------
     def addpeerat(self, loc, peerid, host, port):
         # --------------------------------------------------------------------------
-        """ Inserts a peer's information at a specific position in the 
+        """ Inserts a peer's information at a specific position in the
         list of peers. The functions addpeerat, getpeerat, and removepeerat
-        should not be used concurrently with addpeer, getpeer, and/or 
-        removepeer. 
+        should not be used concurrently with addpeer, getpeer, and/or
+        removepeer.
         """
         self.peers[loc] = (peerid, host, int(port))
 
@@ -223,7 +223,7 @@ class FxPeer:
     # --------------------------------------------------------------------------
     def makeserversocket(self, port, backlog=5):
         # --------------------------------------------------------------------------
-        """ Constructs and prepares a server socket listening on the given 
+        """ Constructs and prepares a server socket listening on the given
         port.
         """
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -237,12 +237,12 @@ class FxPeer:
         # --------------------------------------------------------------------------
         """
         sendtopeer( peer id, message type, message data, wait for a reply )
-         -> [ ( reply type, reply data ), ... ] 
+         -> [ ( reply type, reply data ), ... ]
         Send a message to the identified peer. In order to decide how to
         send the message, the router handler for this peer will be called.
         If no router function has been registered, it will not work. The
-        router function should provide the next immediate peer to whom the 
-        message should be forwarded. The peer's reply, if it is expected, 
+        router function should provide the next immediate peer to whom the
+        message should be forwarded. The peer's reply, if it is expected,
         will be returned.
         Returns None if the message could not be routed.
         """
@@ -339,7 +339,7 @@ class FxPeer:
                                      args=[clientsock])
                 t.start()
             except KeyboardInterrupt:
-                print('KeyboardInterrupt: stopping mainloop')
+                print 'KeyboardInterrupt: stopping mainloop'
                 self.shutdown = True
                 continue
             except:

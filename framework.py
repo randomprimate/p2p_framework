@@ -22,7 +22,6 @@ class FilerPeer(FxPeer):
     # ==============================================================================
     """ Implements a file-sharing peer-to-peer entity based on the generic
     BerryTella P2P framework.
-
     """
 
     # --------------------------------------------------------------------------
@@ -32,7 +31,6 @@ class FilerPeer(FxPeer):
         of peers, with its server listening on the specified port. Also sets
         the dictionary of local files to empty and adds handlers to the
         FxPeer framework.
-
         """
         FxPeer.__init__(self, maxpeers, serverport)
 
@@ -77,7 +75,6 @@ class FilerPeer(FxPeer):
         is the canonical name of the peer that desires to be added to this
         peer's list of peers, host and port are the necessary data to connect
         to the peer.
-
         """
         self.peerlock.acquire()
         try:
@@ -135,7 +132,6 @@ class FilerPeer(FxPeer):
         is the name of the peer that initiated the query, key is the (portion
         of the) file name being searched for, and ttl is how many further
         levels of peers this query should be propagated on.
-
         """
         # self.peerlock.acquire()
         try:
@@ -158,7 +154,6 @@ class FilerPeer(FxPeer):
         received and acknowledged, by either replying with a QRESPONSE message
         if the file is found in the local list of files, or propagating the
         message onto all immediate neighbors.
-
         """
         for fname in self.files.keys():
             if key in fname:
@@ -186,7 +181,6 @@ class FilerPeer(FxPeer):
         in the format of a string, "file-name  peer-id", where file-name is
         the file that was queried about and peer-id is the name of the peer
         that has a copy of the file.
-
         """
         try:
             fname, fpeerid = data.split()
@@ -205,7 +199,6 @@ class FilerPeer(FxPeer):
         """ Handles the FILEGET message type. The message data should be in
         the format of a string, "file-name", where file-name is the name
         of the file to be fetched.
-
         """
         fname = data
         if fname not in self.files:
@@ -235,7 +228,6 @@ class FilerPeer(FxPeer):
         format of a string, "peer-id", where peer-id is the canonical
         name of the peer that wishes to be unregistered from this
         peer's directory.
-
         """
         self.peerlock.acquire()
         try:
@@ -258,12 +250,10 @@ class FilerPeer(FxPeer):
     def buildpeers(self, host, port, hops=1):
         # --------------------------------------------------------------------------
         """ buildpeers(host, port, hops)
-
         Attempt to build the local peer list up to the limit stored by
         self.maxpeers, using a simple depth-first search given an
         initial host and port as starting point. The depth of the
         search is limited by the hops parameter.
-
         """
         if self.maxpeersreached() or not hops:
             return
