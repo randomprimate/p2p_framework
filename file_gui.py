@@ -20,7 +20,7 @@ class FxGui(Frame):
         Frame.__init__(self, master)
         self.grid()
         self.createWidgets()
-        self.master.title("BerryTella Filer GUI %d" % serverport)
+        self.master.title("File UI %d" % serverport)
         self.fxpeer = FilerPeer(maxpeers, serverport)
 
         self.bind("<Destroy>", self.__onDestroy)

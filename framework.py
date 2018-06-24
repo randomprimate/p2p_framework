@@ -21,7 +21,7 @@ ERROR = "ERRO"
 class FilerPeer(FxPeer):
     # ==============================================================================
     """ Implements a file-sharing peer-to-peer entity based on the generic
-    BerryTella P2P framework.
+    P2P framework.
     """
 
     # --------------------------------------------------------------------------
